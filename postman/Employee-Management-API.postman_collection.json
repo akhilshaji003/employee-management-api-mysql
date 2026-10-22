@@ -1,0 +1,102 @@
+{
+  "info": {
+    "name": "Employee Management API",
+    "description": "Requests for the Employee Management API. Start the app at http://localhost:8080.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "employeeId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create employee",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Asha\",\n  \"lastName\": \"Nair\",\n  \"email\": \"asha.nair@example.com\",\n  \"department\": \"Engineering\",\n  \"salary\": 65000.0,\n  \"active\": true\n}"
+        },
+        "url": "{{baseUrl}}/api/v1/employees"
+      }
+    },
+    {
+      "name": "List employees (pagination)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/employees?page=0&size=10&sort=lastName,asc"
+      }
+    },
+    {
+      "name": "Search employees",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/employees?search=asha"
+      }
+    },
+    {
+      "name": "Filter active employees",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/employees?active=true"
+      }
+    },
+    {
+      "name": "Filter by department",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/employees?department=Engineering"
+      }
+    },
+    {
+      "name": "Get employee by ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/v1/employees/{{employeeId}}"
+      }
+    },
+    {
+      "name": "Update employee",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Asha\",\n  \"lastName\": \"Nair\",\n  \"email\": \"asha.nair@example.com\",\n  \"department\": \"Platform Engineering\",\n  \"salary\": 70000.0,\n  \"active\": true\n}"
+        },
+        "url": "{{baseUrl}}/api/v1/employees/{{employeeId}}"
+      }
+    },
+    {
+      "name": "Delete employee",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/v1/employees/{{employeeId}}"
+      }
+    },
+    {
+      "name": "Swagger UI",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/swagger-ui.html"
+      }
+    }
+  ]
+}
